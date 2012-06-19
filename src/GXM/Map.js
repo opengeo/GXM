@@ -151,6 +151,19 @@ Ext.define('GXM.Map', {
         if (!window.OpenLayers) {
             this.setHtml('OpenLayers is required');
         }
+
+        Ext.Viewport.on('orientationchange', this.updateMapSize, this);
+    },
+
+    /** private: method[updateMapSize]
+     * 
+     *  Internal method that updates the Map size when the orientation of the
+     *  device changes.
+     */
+    updateMapSize: function() {
+        if(this.getMap()) {
+            this.getMap().updateSize();
+        }
     },
     
     /**
